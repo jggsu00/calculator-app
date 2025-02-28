@@ -24,4 +24,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   String _operand = "";
   double? _firstNum;
   double? _secondNum;
+
+  void _onButtonPressed(String value) {
+    setState(() {
+      if (value == "C") {
+        _display = "";
+        _operand = "";
+        _firstNum = null;
+        _secondNum = null;
+      }
+    });
+  }
 }
