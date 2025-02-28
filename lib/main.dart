@@ -32,6 +32,39 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         _operand = "";
         _firstNum = null;
         _secondNum = null;
+      } else if (value == "=") {
+        if (_firstNum != null && _operand.isNotEmpty && _display.isNotEmpty) {
+          _secondNum = double.tryParse(_display);
+          if (_secondNum != null) {
+            switch (_operand) {
+              case "+":
+                _display = (_firstNum! + _secondNum!).toString();
+                break;
+              case "-":
+                _display = (_firstNum! - _secondNum!).toString();
+                break;
+              case "*":
+                _display = (_firstNum! * _secondNum!).toString();
+                break;
+              case "/":
+                _display =
+                _secondNum == 0 ? "Error" : (_firstNum! / _secondNum!)
+                    .toString();
+                break;
+            }
+          }
+          _operand = "";
+          _firstNum = null;
+          _secondNum = null;
+        }
+      } else if (["+", "-", "*", "/"].contains(value)) {
+        if (_display.isNotEmpty) {
+          _firstNum = double.tryParse(_display);
+          _operand = value;
+          _display = "";
+        }
+      } else {
+        _display += value;
       }
     });
   }
