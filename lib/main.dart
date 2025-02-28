@@ -68,4 +68,16 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       }
     });
   }
+
+  Widget _buildButton(String text) {
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () => _onButtonPressed(text),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
 }
